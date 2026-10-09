@@ -14,147 +14,138 @@
     }
 
     body {
-      background: #0a0a0a;
+      background: #050505;
       color: #4ade80;
       font-family: 'JetBrains Mono', monospace;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 16px;
       overflow-x: hidden;
-      line-height: 1.6;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
+    .logo {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin-bottom: 18px;
+      border: 2px solid #1f1f1f;
+      box-shadow: 0 0 30px rgba(74, 222, 128, 0.15);
       opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
+      animation: fadeIn 1s ease forwards;
     }
 
-    .header h1 {
-      font-size: 2.8rem;
-      letter-spacing: 8px;
+    .title {
+      font-size: 2.6rem;
+      letter-spacing: 10px;
       color: #86efac;
-      text-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+      text-shadow: 0 0 25px rgba(74, 222, 128, 0.35);
+      opacity: 0;
+      animation: fadeIn 1s ease 0.2s forwards;
     }
 
-    .header p {
+    .subtitle {
       color: #4ade80;
-      opacity: 0.7;
-      margin-top: 8px;
+      opacity: 0.6;
+      margin-top: 6px;
+      margin-bottom: 32px;
       font-size: 0.95rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.4s forwards;
     }
 
     .terminal {
-      background: #111;
-      border: 1px solid #1f1f1f;
-      border-radius: 12px;
+      width: 100%;
+      max-width: 720px;
+      background: #0c0c0c;
+      border: 1px solid #1a1a1a;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 0 40px rgba(74, 222, 128, 0.08);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(74, 222, 128, 0.06);
       opacity: 0;
-      animation: fadeIn 1.2s ease 0.3s forwards;
+      animation: fadeIn 1s ease 0.5s forwards;
     }
 
-    .terminal-header {
-      background: #1a1a1a;
-      padding: 12px 16px;
+    .terminal-bar {
+      background: #141414;
+      padding: 11px 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid #222;
+      gap: 7px;
+      border-bottom: 1px solid #1f1f1f;
     }
 
     .dot {
-      width: 12px;
-      height: 12px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
     }
-    .dot.red { background: #ff5f56; }
-    .dot.yellow { background: #ffbd2e; }
-    .dot.green { background: #27c93f; }
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
 
-    .terminal-title {
-      margin-left: 12px;
-      font-size: 0.85rem;
-      color: #666;
+    .bar-title {
+      margin-left: 10px;
+      font-size: 0.8rem;
+      color: #555;
     }
 
     .terminal-body {
-      padding: 24px;
-      height: 480px;
+      padding: 22px 20px;
+      height: 420px;
       overflow-y: auto;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
     }
 
     .line {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       opacity: 0;
-      transform: translateY(8px);
-      animation: slideUp 0.5s ease forwards;
+      transform: translateY(10px);
+      animation: slideUp 0.45s ease forwards;
     }
 
-    .prompt {
-      color: #86efac;
-    }
-
-    .cmd {
-      color: #e2e8f0;
-    }
-
-    .output {
-      color: #4ade80;
-      opacity: 0.85;
-      padding-left: 16px;
-    }
-
-    .system {
-      color: #64748b;
-      font-style: italic;
-    }
-
-    .highlight {
-      color: #86efac;
-      font-weight: 500;
-    }
+    .prompt { color: #86efac; }
+    .cmd { color: #e2e8f0; }
+    .out { color: #4ade80; opacity: 0.85; padding-left: 14px; }
+    .sys { color: #64748b; font-style: italic; }
 
     .cursor {
       display: inline-block;
       width: 8px;
-      height: 16px;
+      height: 15px;
       background: #4ade80;
-      margin-left: 4px;
-      animation: blink 1s infinite;
+      margin-left: 3px;
+      animation: blink 1s step-end infinite;
       vertical-align: middle;
     }
 
     .links {
-      margin-top: 40px;
+      margin-top: 36px;
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
       justify-content: center;
       opacity: 0;
-      animation: fadeIn 1.2s ease 1s forwards;
+      animation: fadeIn 1s ease 1.2s forwards;
     }
 
     .links a {
       color: #4ade80;
       text-decoration: none;
       border: 1px solid #1f1f1f;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: all 0.25s ease;
     }
 
     .links a:hover {
       background: #111;
       border-color: #4ade80;
-      box-shadow: 0 0 15px rgba(74, 222, 128, 0.15);
+      box-shadow: 0 0 18px rgba(74, 222, 128, 0.12);
     }
 
     @keyframes fadeIn {
@@ -169,104 +160,105 @@
     }
 
     @keyframes blink {
-      0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
 
-    /* Scrollbar */
     .terminal-body::-webkit-scrollbar {
-      width: 6px;
+      width: 5px;
     }
     .terminal-body::-webkit-scrollbar-track {
-      background: #111;
+      background: transparent;
     }
     .terminal-body::-webkit-scrollbar-thumb {
-      background: #333;
-      border-radius: 3px;
+      background: #222;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>MOSS</h1>
-      <p>Quiet alpha discovery skill</p>
-    </div>
 
-    <div class="terminal">
-      <div class="terminal-header">
-        <div class="dot red"></div>
-        <div class="dot yellow"></div>
-        <div class="dot green"></div>
-        <div class="terminal-title">moss@bankr — skill</div>
-      </div>
-      <div class="terminal-body" id="terminal"></div>
-    </div>
+  <img class="logo" src="https://pbs.twimg.com/profile_images/2108567229445054465/oYHIIHgR_400x400.jpg" alt="Moss Logo">
+  
+  <div class="title">MOSS</div>
+  <div class="subtitle">Quiet alpha discovery skill</div>
 
-    <div class="links">
-      <a href="https://github.com/installmoss/moss-alpha" target="_blank">GitHub</a>
-      <a href="https://x.com/installingMOSS" target="_blank">X / Twitter</a>
-      <a href="https://bankr.bot/terminal/trade?out=0xe2e9a281e3762cf10354416653a69eb044d93ba3&chain=base" target="_blank">$MOSS Token</a>
-      <a href="https://github.com/installmoss/moss-alpha/blob/main/SKILL.md" target="_blank">Skill</a>
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot red"></div>
+      <div class="dot yellow"></div>
+      <div class="dot green"></div>
+      <div class="bar-title">moss@bankr — skill</div>
     </div>
+    <div class="terminal-body" id="term"></div>
+  </div>
+
+  <div class="links">
+    <a href="https://github.com/installmoss/moss-alpha" target="_blank">GitHub</a>
+    <a href="https://x.com/installingMOSS" target="_blank">X / Twitter</a>
+    <a href="https://bankr.bot/terminal/trade?out=0xe2e9a281e3762cf10354416653a69eb044d93ba3&chain=base" target="_blank">$MOSS Token</a>
+    <a href="https://github.com/installmoss/moss-alpha/blob/main/SKILL.md" target="_blank">Skill</a>
   </div>
 
   <script>
-    const terminal = document.getElementById('terminal');
+    const term = document.getElementById('term');
 
-    const lines = [
-      { type: 'system', text: '// initializing moss-alpha v2...' },
-      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'status' },
-      { type: 'output', text: 'Skill: online' },
-      { type: 'output', text: 'Mode: quiet discovery' },
-      { type: 'output', text: 'Noise filter: active' },
+    const sequence = [
+      { type: 'sys',  text: '// initializing moss-alpha v2...' },
+      { type: 'cmd',  text: 'status' },
+      { type: 'out',  text: 'Skill: online' },
+      { type: 'out',  text: 'Mode: quiet discovery' },
+      { type: 'out',  text: 'Noise filter: active' },
       { type: 'blank' },
-      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'scan --quiet' },
-      { type: 'output', text: 'Looking for overlooked opportunities...' },
-      { type: 'output', text: '→ low social volume detected' },
-      { type: 'output', text: '→ steady holder growth' },
-      { type: 'output', text: '→ healthy structure found' },
+      { type: 'cmd',  text: 'scan --quiet' },
+      { type: 'out',  text: 'Looking for overlooked opportunities...' },
+      { type: 'out',  text: '→ low social volume detected' },
+      { type: 'out',  text: '→ steady holder growth' },
+      { type: 'out',  text: '→ healthy structure found' },
       { type: 'blank' },
-      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'token' },
-      { type: 'output', text: '$MOSS is live on Base' },
-      { type: 'output', text: 'Contract: 0xe2e9a281...d93ba3' },
-      { type: 'output', text: 'Holders get deeper analysis' },
+      { type: 'cmd',  text: 'token' },
+      { type: 'out',  text: '$MOSS is live on Base' },
+      { type: 'out',  text: 'Contract: 0xe2e9a281...d93ba3' },
+      { type: 'out',  text: 'Holders get deeper analysis' },
       { type: 'blank' },
-      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'philosophy' },
-      { type: 'output', text: 'Moss doesn’t rush.' },
-      { type: 'output', text: 'It grows quietly.' },
+      { type: 'cmd',  text: 'philosophy' },
+      { type: 'out',  text: 'Moss doesn’t rush.' },
+      { type: 'out',  text: 'It grows quietly.' },
       { type: 'blank' },
-      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'install' },
-      { type: 'output', text: 'install the skill from https://github.com/installmoss/moss-alpha' },
+      { type: 'cmd',  text: 'install' },
+      { type: 'out',  text: 'install the skill from https://github.com/installmoss/moss-alpha' },
       { type: 'blank' },
-      { type: 'system', text: '// waiting for next quiet signal...' },
+      { type: 'sys',  text: '// waiting for next quiet signal...' },
       { type: 'cursor' }
     ];
 
-    let delay = 0;
+    let delay = 400;
 
-    lines.forEach((line, index) => {
+    sequence.forEach((item) => {
       setTimeout(() => {
         const div = document.createElement('div');
         div.className = 'line';
 
-        if (line.type === 'blank') {
+        if (item.type === 'blank') {
           div.innerHTML = '&nbsp;';
-        } else if (line.type === 'system') {
-          div.innerHTML = `<span class="system">${line.text}</span>`;
-        } else if (line.type === 'prompt') {
-          div.innerHTML = `<span class="prompt">\( {line.text}</span><span class="cmd"> \){line.cmd}</span>`;
-        } else if (line.type === 'output') {
-          div.innerHTML = `<span class="output">${line.text}</span>`;
-        } else if (line.type === 'cursor') {
-          div.innerHTML = `<span class="prompt">moss@bankr:\~$</span><span class="cursor"></span>`;
+        } 
+        else if (item.type === 'sys') {
+          div.innerHTML = `<span class="sys">${item.text}</span>`;
+        } 
+        else if (item.type === 'cmd') {
+          div.innerHTML = `<span class="prompt">moss@bankr:\~$ </span><span class="cmd">${item.text}</span>`;
+        } 
+        else if (item.type === 'out') {
+          div.innerHTML = `<span class="out">${item.text}</span>`;
+        } 
+        else if (item.type === 'cursor') {
+          div.innerHTML = `<span class="prompt">moss@bankr:\~$ </span><span class="cursor"></span>`;
         }
 
-        terminal.appendChild(div);
-        terminal.scrollTop = terminal.scrollHeight;
+        term.appendChild(div);
+        term.scrollTop = term.scrollHeight;
       }, delay);
 
-      delay += line.type === 'blank' ? 300 : 700;
+      delay += item.type === 'blank' ? 280 : 650;
     });
   </script>
 </body>
