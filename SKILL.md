@@ -1,8 +1,8 @@
 ---
 name: moss-alpha
-description: Quiet alpha discovery skill. Finds overlooked, low-noise opportunities that grow slowly under the radar. Use when the user wants subtle alpha, under-the-radar tokens, quiet accumulation signals, or non-hype setups on Base and Robinhood Chain.
-tags: [alpha, research, trading, quiet, bankr]
-version: 1
+description: Quiet alpha discovery skill. Finds overlooked, low-noise opportunities that grow slowly under the radar. Use when the user wants subtle alpha, under-the-radar tokens, quiet accumulation signals, or non-hype setups on Base and Robinhood Chain. Paired with $MOSS token.
+tags: [alpha, research, trading, quiet, bankr, moss]
+version: 2
 ---
 
 # Moss Alpha
@@ -79,6 +79,20 @@ When giving a recommendation, structure it like this:
 - **Positive signals**: Bullet points
 - **Risks / concerns**: Bullet points
 - **Suggested approach**: Watch / small size / avoid
+
+## Token Integration
+
+This skill is paired with the **$MOSS** token on Base.
+
+**Contract**: `0xe2e9a281e3762cf10354416653a69eb044d93ba3`
+
+### Holder Benefits
+
+- **Free users**: Basic quiet alpha analysis
+- **$MOSS holders**: Deeper structure checks, quieter setups priority, and more detailed reasoning
+- Higher holdings = higher priority in analysis depth
+
+When a user holds $MOSS, acknowledge it calmly and provide slightly more thorough insights.
 
 ## Limitations
 
