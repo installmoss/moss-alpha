@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MOSS — Quiet Alpha</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #4ade80;
+      font-family: 'JetBrains Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    .header h1 {
+      font-size: 2.8rem;
+      letter-spacing: 8px;
+      color: #86efac;
+      text-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+    }
+
+    .header p {
+      color: #4ade80;
+      opacity: 0.7;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    .terminal {
+      background: #111;
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(74, 222, 128, 0.08);
+      opacity: 0;
+      animation: fadeIn 1.2s ease 0.3s forwards;
+    }
+
+    .terminal-header {
+      background: #1a1a1a;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #222;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+
+    .terminal-title {
+      margin-left: 12px;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .terminal-body {
+      padding: 24px;
+      height: 480px;
+      overflow-y: auto;
+      font-size: 0.92rem;
+    }
+
+    .line {
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(8px);
+      animation: slideUp 0.5s ease forwards;
+    }
+
+    .prompt {
+      color: #86efac;
+    }
+
+    .cmd {
+      color: #e2e8f0;
+    }
+
+    .output {
+      color: #4ade80;
+      opacity: 0.85;
+      padding-left: 16px;
+    }
+
+    .system {
+      color: #64748b;
+      font-style: italic;
+    }
+
+    .highlight {
+      color: #86efac;
+      font-weight: 500;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: #4ade80;
+      margin-left: 4px;
+      animation: blink 1s infinite;
+      vertical-align: middle;
+    }
+
+    .links {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeIn 1.2s ease 1s forwards;
+    }
+
+    .links a {
+      color: #4ade80;
+      text-decoration: none;
+      border: 1px solid #1f1f1f;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+    }
+
+    .links a:hover {
+      background: #111;
+      border-color: #4ade80;
+      box-shadow: 0 0 15px rgba(74, 222, 128, 0.15);
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Scrollbar */
+    .terminal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .terminal-body::-webkit-scrollbar-track {
+      background: #111;
+    }
+    .terminal-body::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>MOSS</h1>
+      <p>Quiet alpha discovery skill</p>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+        <div class="terminal-title">moss@bankr — skill</div>
+      </div>
+      <div class="terminal-body" id="terminal"></div>
+    </div>
+
+    <div class="links">
+      <a href="https://github.com/installmoss/moss-alpha" target="_blank">GitHub</a>
+      <a href="https://x.com/installingMOSS" target="_blank">X / Twitter</a>
+      <a href="https://bankr.bot/terminal/trade?out=0xe2e9a281e3762cf10354416653a69eb044d93ba3&chain=base" target="_blank">$MOSS Token</a>
+      <a href="https://github.com/installmoss/moss-alpha/blob/main/SKILL.md" target="_blank">Skill</a>
+    </div>
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+
+    const lines = [
+      { type: 'system', text: '// initializing moss-alpha v2...' },
+      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'status' },
+      { type: 'output', text: 'Skill: online' },
+      { type: 'output', text: 'Mode: quiet discovery' },
+      { type: 'output', text: 'Noise filter: active' },
+      { type: 'blank' },
+      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'scan --quiet' },
+      { type: 'output', text: 'Looking for overlooked opportunities...' },
+      { type: 'output', text: '→ low social volume detected' },
+      { type: 'output', text: '→ steady holder growth' },
+      { type: 'output', text: '→ healthy structure found' },
+      { type: 'blank' },
+      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'token' },
+      { type: 'output', text: '$MOSS is live on Base' },
+      { type: 'output', text: 'Contract: 0xe2e9a281...d93ba3' },
+      { type: 'output', text: 'Holders get deeper analysis' },
+      { type: 'blank' },
+      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'philosophy' },
+      { type: 'output', text: 'Moss doesn’t rush.' },
+      { type: 'output', text: 'It grows quietly.' },
+      { type: 'blank' },
+      { type: 'prompt', text: 'moss@bankr:\~$ ', cmd: 'install' },
+      { type: 'output', text: 'install the skill from https://github.com/installmoss/moss-alpha' },
+      { type: 'blank' },
+      { type: 'system', text: '// waiting for next quiet signal...' },
+      { type: 'cursor' }
+    ];
+
+    let delay = 0;
+
+    lines.forEach((line, index) => {
+      setTimeout(() => {
+        const div = document.createElement('div');
+        div.className = 'line';
+
+        if (line.type === 'blank') {
+          div.innerHTML = '&nbsp;';
+        } else if (line.type === 'system') {
+          div.innerHTML = `<span class="system">${line.text}</span>`;
+        } else if (line.type === 'prompt') {
+          div.innerHTML = `<span class="prompt">\( {line.text}</span><span class="cmd"> \){line.cmd}</span>`;
+        } else if (line.type === 'output') {
+          div.innerHTML = `<span class="output">${line.text}</span>`;
+        } else if (line.type === 'cursor') {
+          div.innerHTML = `<span class="prompt">moss@bankr:\~$</span><span class="cursor"></span>`;
+        }
+
+        terminal.appendChild(div);
+        terminal.scrollTop = terminal.scrollHeight;
+      }, delay);
+
+      delay += line.type === 'blank' ? 300 : 700;
+    });
+  </script>
+</body>
+</html>
