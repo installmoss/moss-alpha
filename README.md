@@ -18,7 +18,7 @@
   </a>
   <img src="https://img.shields.io/badge/Bankr-Skill-4A7C59?style=flat-square" alt="Bankr Skill"/>
   <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"/>
-  <img src="https://img.shields.io/badge/Language-Markdown-blue?style=flat-square" alt="Language"/>
+  <img src="https://img.shields.io/badge/Chain-Base-blue?style=flat-square" alt="Base"/>
 </p>
 
 ---
@@ -43,6 +43,18 @@ install the skill from https://github.com/installmoss/moss-alpha
 
 ---
 
+### Token
+
+$MOSS is live on Base.
+
+**Contract**: `0xe2e9a281e3762cf10354416653a69eb044d93ba3`
+
+**Trade**: [Bankr](https://bankr.bot/terminal/trade?out=0xe2e9a281e3762cf10354416653a69eb044d93ba3&chain=base)
+
+Hold $MOSS to unlock deeper analysis from the skill.
+
+---
+
 ### Features
 
 - Low-noise opportunity discovery
@@ -50,6 +62,7 @@ install the skill from https://github.com/installmoss/moss-alpha
 - Healthy structure over pure momentum
 - Calm, non-FOMO response style
 - Clear risk framing
+- $MOSS holder priority
 
 ---
 
@@ -64,6 +77,7 @@ install the skill from https://github.com/installmoss/moss-alpha
 
 - **X (Twitter)**: [@installingMOSS](https://x.com/installingMOSS)
 - **Repository**: [github.com/installmoss/moss-alpha](https://github.com/installmoss/moss-alpha)
+- **Token**: [0xe2e9a281e3762cf10354416653a69eb044d93ba3](https://basescan.org/token/0xe2e9a281e3762cf10354416653a69eb044d93ba3)
 
 ---
 
